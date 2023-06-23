@@ -379,6 +379,7 @@
 "Assets/SaltyAssets/Scripts/Player.cs"
 "Assets/SaltyAssets/Scripts/TestAttack.cs"
 "Assets/SaltyAssets/Scripts/UI_Inventory.cs"
+"Assets/Scripts/SampleScript.cs"
 -langversion:9.0
 
 /deterministic

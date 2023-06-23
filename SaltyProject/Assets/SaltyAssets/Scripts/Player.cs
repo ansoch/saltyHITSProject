@@ -33,8 +33,8 @@ public class Player : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        rb.drag = 0f;
-        rb.angularDrag = 0f;
+        //rb.drag = 0f;
+        //rb.angularDrag = 0f;
         inventory = new Inventory();
         uiInventory.SetPlayer(this);
         uiInventory.SetInventory(inventory);
@@ -54,10 +54,12 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (collision.CompareTag("Box"))
+        /*
+        if (collision.CompareTag("Carriable"))
         {
             //heldObject = collision.gameObject;
         }
+        */
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -89,11 +91,16 @@ public class Player : MonoBehaviour
                 rb.velocity = new Vector2(speed, rb.velocity.y);
                 _facingRight = 1f;
             }
-            if (Input.GetKey(KeyCode.A))
+            else if (Input.GetKey(KeyCode.A))
             {
                 rb.velocity = new Vector2(-speed, rb.velocity.y);
                 _facingRight = -1f;
             }
+            else
+            {
+                //rb.velocity = new Vector2(0, rb.velocity.y);
+            }
+
             if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
             {
                 rb.AddForce(transform.up * jumpForse, ForceMode2D.Impulse);
@@ -108,7 +115,7 @@ public class Player : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.LeftShift)){
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), true);
-                rb.velocity = new Vector2(speed * _facingRight * 2f, rb.velocity.y);
+                rb.velocity = new Vector2(speed * _facingRight * 1.5f, rb.velocity.y);
                 Anim.SetTrigger("IsSliding");
                 //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), true);
             }
