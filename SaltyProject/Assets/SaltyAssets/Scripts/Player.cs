@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum WeaponType
+{
+    sword,
+    hammer,
+    scythe
+}
+
 public class Player : MonoBehaviour
 {
     public Animator Anim { get; private set; }
@@ -20,9 +27,13 @@ public class Player : MonoBehaviour
     private Inventory inventory;
     [SerializeField] private UI_Inventory uiInventory;
 
-    private bool _isJumping = false;
-    private bool _isRunning = false;
-    private bool _isAttacking = false;
+    public string CurrentWeaponAnim { get; private set; } = "sword_side";
+
+    private string _swordAnim = "sword_side";
+    private string _hammerAnim = "hammer_side";
+    private string _scytheAnim = "scythe_side";
+
+
 
     private float _facingRight = -1;
 
@@ -82,7 +93,7 @@ public class Player : MonoBehaviour
     {
         AnimatorStateInfo stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
 
-        if (!stateInfo.IsName("sword_side") && !stateInfo.IsName("slide_side"))
+        if (!stateInfo.IsName(CurrentWeaponAnim) && !stateInfo.IsName("slide_side"))
         {
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), false);
 
@@ -96,9 +107,21 @@ public class Player : MonoBehaviour
                 rb.velocity = new Vector2(-speed, rb.velocity.y);
                 _facingRight = -1f;
             }
-            else
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                //rb.velocity = new Vector2(0, rb.velocity.y);
+                CurrentWeaponAnim = _swordAnim;
+                Anim.SetInteger("WeaponType", (int)WeaponType.sword);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                CurrentWeaponAnim = _hammerAnim;
+                Anim.SetInteger("WeaponType", (int)WeaponType.hammer);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                CurrentWeaponAnim = _scytheAnim;
+                Anim.SetInteger("WeaponType", (int)WeaponType.scythe);
             }
 
             if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
@@ -115,7 +138,7 @@ public class Player : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.LeftShift)){
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), true);
-                rb.velocity = new Vector2(speed * _facingRight * 1.5f, rb.velocity.y);
+                rb.velocity = new Vector2(speed * _facingRight * 2f, rb.velocity.y);
                 Anim.SetTrigger("IsSliding");
                 //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), true);
             }
