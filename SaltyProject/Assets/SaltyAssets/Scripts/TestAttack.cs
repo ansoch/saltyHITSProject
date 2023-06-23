@@ -27,7 +27,21 @@ public class TestAttack : MonoBehaviour
     }
     private void Attack()
     {
-        if(!stateInfo.IsName("weapon_sword_side") && !playerStateInfo.IsName("slide_side"))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            anim.SetInteger("WeaponType", (int)WeaponType.sword);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            anim.SetInteger("WeaponType", (int)WeaponType.hammer);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            anim.SetInteger("WeaponType", (int)WeaponType.scythe);
+        }
+
+
+        if (!stateInfo.IsName("weapon_sword_side") && !playerStateInfo.IsName("slide_side"))
         {
             if(Input.GetButtonDown("Fire1"))
             {
