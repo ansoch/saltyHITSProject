@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
     private string _swordAnim = "sword_side";
     private string _hammerAnim = "hammer_side";
-    private string _scytheAnim = "scythe_side";
+    private string _scytheAnim = "sycthe_side";
 
 
 

@@ -13,6 +13,12 @@ public class TestAttack : MonoBehaviour
 
     [SerializeField] private Animator playerAnimator;
 
+    public string CurrentWeaponAnim { get; private set; } = "weapon_sword_side";
+
+    private string _swordAnim = "weapon_sword_side";
+    private string _hammerAnim = "weapon_hammer_side";
+    private string _scytheAnim = "weapon_sycthe_side";
+
     private AnimatorStateInfo stateInfo;
     private AnimatorStateInfo playerStateInfo;
     Animator anim;
@@ -30,18 +36,21 @@ public class TestAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             anim.SetInteger("WeaponType", (int)WeaponType.sword);
+            CurrentWeaponAnim = _swordAnim;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             anim.SetInteger("WeaponType", (int)WeaponType.hammer);
+            CurrentWeaponAnim = _hammerAnim;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             anim.SetInteger("WeaponType", (int)WeaponType.scythe);
+            CurrentWeaponAnim = _scytheAnim;
         }
 
 
-        if (!stateInfo.IsName("weapon_sword_side") && !playerStateInfo.IsName("slide_side"))
+        if (!stateInfo.IsName(CurrentWeaponAnim) && !playerStateInfo.IsName("slide_side"))
         {
             if(Input.GetButtonDown("Fire1"))
             {
