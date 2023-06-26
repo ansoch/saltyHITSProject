@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638220946786459915
-    m_Hash: 1959266297
+      ticks: 638233969551291908
+    m_Hash: 2474509057
   m_LockFileStatus:
     m_FilePath: D:/projects/saltyHITSProject/SaltyProject/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638220946786639950
-    m_Hash: 328578714
+      ticks: 638233969551291908
+    m_Hash: 2936387884
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -3694,10 +3694,12 @@ m_ResolvedPackages:
     - 1.0.6
     - 2.0.2
     - 2.0.3
+    - 2.0.4
     compatible:
     - 1.0.6
     - 2.0.2
     - 2.0.3
+    - 2.0.4
     recommended: 1.0.6
     deprecated: []
   dependencies: []

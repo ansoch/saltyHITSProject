@@ -152,5 +152,27 @@ public class Player : MonoBehaviour
         Anim.SetFloat("SpeedX", Math.Abs(rb.velocity.x));
         Anim.SetBool("IsRunning", Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A));
         Anim.SetBool("IsGrounded", IsGrounded);
+        //NormalizeSlope();
+    }
+    void NormalizeSlope()
+    {
+        // Attempt vertical normalization
+        if (IsGrounded)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 0.5f, WhatIsGround);
+
+            if (hit.collider != null && Mathf.Abs(hit.normal.x) > 0.1f)
+            {
+                Rigidbody2D body = rb;
+                // Apply the opposite force against the slope force 
+                // You will need to provide your own slopeFriction to stabalize movement
+                body.velocity = new Vector2(body.velocity.x - (hit.normal.x * 0.6f), body.velocity.y);
+
+                //Move Player up or down to compensate for the slope below them
+                Vector3 pos = transform.position;
+                pos.y += -hit.normal.x * Mathf.Abs(body.velocity.x) * Time.deltaTime * (body.velocity.x - hit.normal.x > 0 ? 1 : -1);
+                transform.position = pos;
+            }
+        }
     }
 }
