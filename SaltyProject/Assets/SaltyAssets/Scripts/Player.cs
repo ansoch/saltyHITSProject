@@ -33,7 +33,9 @@ public class Player : MonoBehaviour
     private string _hammerAnim = "hammer_side";
     private string _syctheAnim = "sycthe_side";
 
-
+    [SerializeField] private Collider2D collider;
+    [SerializeField] private PhysicsMaterial2D highFrictionMaterial;
+    [SerializeField] private PhysicsMaterial2D lowFrictionMaterial;
 
     private float _facingRight = -1;
 
@@ -99,13 +101,19 @@ public class Player : MonoBehaviour
 
             if (Input.GetKey(KeyCode.D))
             {
+                collider.sharedMaterial = lowFrictionMaterial;
                 rb.velocity = new Vector2(speed, rb.velocity.y);
                 _facingRight = 1f;
             }
             else if (Input.GetKey(KeyCode.A))
             {
+                collider.sharedMaterial = lowFrictionMaterial;
                 rb.velocity = new Vector2(-speed, rb.velocity.y);
                 _facingRight = -1f;
+            }
+            else
+            {
+                collider.sharedMaterial = highFrictionMaterial;
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -138,7 +146,7 @@ public class Player : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.LeftShift)){
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), true);
-                rb.velocity = new Vector2(speed * _facingRight * 2f, rb.velocity.y);
+                rb.velocity = new Vector2(speed * _facingRight * 2.5f, rb.velocity.y);
                 Anim.SetTrigger("IsSliding");
                 //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), true);
             }
