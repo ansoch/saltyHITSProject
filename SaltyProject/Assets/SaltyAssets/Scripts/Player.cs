@@ -7,7 +7,7 @@ public enum WeaponType
 {
     sword,
     hammer,
-    scythe
+    sycthe
 }
 
 public class Player : MonoBehaviour
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
     private string _swordAnim = "sword_side";
     private string _hammerAnim = "hammer_side";
-    private string _scytheAnim = "sycthe_side";
+    private string _syctheAnim = "sycthe_side";
 
 
 
@@ -120,8 +120,8 @@ public class Player : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                CurrentWeaponAnim = _scytheAnim;
-                Anim.SetInteger("WeaponType", (int)WeaponType.scythe);
+                CurrentWeaponAnim = _syctheAnim;
+                Anim.SetInteger("WeaponType", (int)WeaponType.sycthe);
             }
 
             if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)

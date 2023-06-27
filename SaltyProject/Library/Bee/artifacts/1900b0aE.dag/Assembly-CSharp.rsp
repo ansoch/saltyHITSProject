@@ -376,6 +376,7 @@
 "Assets/SaltyAssets/Scripts/ItemAssets.cs"
 "Assets/SaltyAssets/Scripts/ItemWorld.cs"
 "Assets/SaltyAssets/Scripts/ItemWorldSpawner.cs"
+"Assets/SaltyAssets/Scripts/PlatformExit.cs"
 "Assets/SaltyAssets/Scripts/Player.cs"
 "Assets/SaltyAssets/Scripts/TestAttack.cs"
 "Assets/SaltyAssets/Scripts/UI_Inventory.cs"

@@ -64,6 +64,7 @@
     <Compile Include="Assets\SaltyAssets\Scripts\TestAttack.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Enemy\DamagebleObject.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\ItemAssets.cs" />
+    <Compile Include="Assets\SaltyAssets\Scripts\PlatformExit.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\ItemWorld.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\UI_Inventory.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Item.cs" />

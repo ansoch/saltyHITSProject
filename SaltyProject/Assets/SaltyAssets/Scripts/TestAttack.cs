@@ -45,7 +45,7 @@ public class TestAttack : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            anim.SetInteger("WeaponType", (int)WeaponType.scythe);
+            anim.SetInteger("WeaponType", (int)WeaponType.sycthe);
             CurrentWeaponAnim = _scytheAnim;
         }
 
