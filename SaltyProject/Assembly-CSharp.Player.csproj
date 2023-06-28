@@ -60,6 +60,9 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\SampleScript.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Inventory.cs" />
+    <Compile Include="Assets\SaltyAssets\Scripts\GunController.cs" />
+    <Compile Include="Assets\SaltyAssets\Scripts\StateInfo.cs" />
+    <Compile Include="Assets\SaltyAssets\Scripts\HPSlider.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Player.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\TestAttack.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Enemy\DamagebleObject.cs" />
@@ -68,6 +71,7 @@
     <Compile Include="Assets\SaltyAssets\Scripts\ItemWorld.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\UI_Inventory.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Item.cs" />
+    <Compile Include="Assets\SaltyAssets\Scripts\STSlider.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Camera.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Enemy\TestEnemy.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Enemy\EnemyAI.cs" />

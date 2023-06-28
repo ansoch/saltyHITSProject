@@ -33,9 +33,12 @@ public class Player : MonoBehaviour
     private string _hammerAnim = "hammer_side";
     private string _syctheAnim = "sycthe_side";
 
+    private bool _isFiring = false;
+
     [SerializeField] private Collider2D collider;
     [SerializeField] private PhysicsMaterial2D highFrictionMaterial;
     [SerializeField] private PhysicsMaterial2D lowFrictionMaterial;
+    [SerializeField] private GameObject shield;
 
     private float _facingRight = -1;
 
@@ -46,12 +49,9 @@ public class Player : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        //rb.drag = 0f;
-        //rb.angularDrag = 0f;
         inventory = new Inventory();
         uiInventory.SetPlayer(this);
         uiInventory.SetInventory(inventory);
-        //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), true);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -61,18 +61,10 @@ public class Player : MonoBehaviour
         {
             if (inventory.GetItemList().Count < 8)
             {
-
                 inventory.AddItem(itemWorld.GetItem());
                 itemWorld.DestroySelf();
             }
         }
-
-        /*
-        if (collision.CompareTag("Carriable"))
-        {
-            //heldObject = collision.gameObject;
-        }
-        */
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -95,64 +87,21 @@ public class Player : MonoBehaviour
     {
         AnimatorStateInfo stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
 
-        if (!stateInfo.IsName(CurrentWeaponAnim) && !stateInfo.IsName("slide_side"))
+        bool isNotBusy = !stateInfo.IsName(CurrentWeaponAnim) && !stateInfo.IsName("slide_side") && !_isFiring;
+        this.SetState(isNotBusy);
+
+        if (isNotBusy)
         {
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), false);
 
-            if (Input.GetKey(KeyCode.D))
-            {
-                collider.sharedMaterial = lowFrictionMaterial;
-                rb.velocity = new Vector2(speed, rb.velocity.y);
-                _facingRight = 1f;
-            }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                collider.sharedMaterial = lowFrictionMaterial;
-                rb.velocity = new Vector2(-speed, rb.velocity.y);
-                _facingRight = -1f;
-            }
-            else
-            {
-                collider.sharedMaterial = highFrictionMaterial;
-            }
+            Running();
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                CurrentWeaponAnim = _swordAnim;
-                Anim.SetInteger("WeaponType", (int)WeaponType.sword);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                CurrentWeaponAnim = _hammerAnim;
-                Anim.SetInteger("WeaponType", (int)WeaponType.hammer);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                CurrentWeaponAnim = _syctheAnim;
-                Anim.SetInteger("WeaponType", (int)WeaponType.sycthe);
-            }
+            WeaponChanger();
 
-            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
-            {
-                rb.AddForce(transform.up * jumpForse, ForceMode2D.Impulse);
-                //Anim.Play("jump_side");
-                Anim.SetTrigger("IsJumping");
-            }
-            if (Input.GetButtonDown("Fire1"))
-            {
-                //Anim.Play("AttackingCatana");
-                rb.velocity = new Vector2(speed*_facingRight*0.75f, rb.velocity.y);
-                Anim.SetTrigger("IsAttacking");
-            }
-            if (Input.GetKeyDown(KeyCode.LeftShift)){
-                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), true);
-                rb.velocity = new Vector2(speed * _facingRight * 2.5f, rb.velocity.y);
-                Anim.SetTrigger("IsSliding");
-                //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), true);
-            }
+            OtherActions();
+
             Flip();
         }
-        //_playerState = _playerState.UpdateState(this);
     }
     private void FixedUpdate()
     {
@@ -160,27 +109,80 @@ public class Player : MonoBehaviour
         Anim.SetFloat("SpeedX", Math.Abs(rb.velocity.x));
         Anim.SetBool("IsRunning", Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A));
         Anim.SetBool("IsGrounded", IsGrounded);
-        //NormalizeSlope();
     }
-    void NormalizeSlope()
+
+    private void WeaponChanger()
     {
-        // Attempt vertical normalization
-        if (IsGrounded)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 0.5f, WhatIsGround);
+            CurrentWeaponAnim = _swordAnim;
+            Anim.SetInteger("WeaponType", (int)WeaponType.sword);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            CurrentWeaponAnim = _hammerAnim;
+            Anim.SetInteger("WeaponType", (int)WeaponType.hammer);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            CurrentWeaponAnim = _syctheAnim;
+            Anim.SetInteger("WeaponType", (int)WeaponType.sycthe);
+        }
+    }
 
-            if (hit.collider != null && Mathf.Abs(hit.normal.x) > 0.1f)
-            {
-                Rigidbody2D body = rb;
-                // Apply the opposite force against the slope force 
-                // You will need to provide your own slopeFriction to stabalize movement
-                body.velocity = new Vector2(body.velocity.x - (hit.normal.x * 0.6f), body.velocity.y);
+    private void Running()
+    {
+        if (Input.GetKey(KeyCode.D))
+        {
+            collider.sharedMaterial = lowFrictionMaterial;
+            rb.velocity = new Vector2(speed, rb.velocity.y);
+            _facingRight = 1f;
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            collider.sharedMaterial = lowFrictionMaterial;
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
+            _facingRight = -1f;
+        }
+        else
+        {
+            collider.sharedMaterial = highFrictionMaterial;
+        }
+    }
 
-                //Move Player up or down to compensate for the slope below them
-                Vector3 pos = transform.position;
-                pos.y += -hit.normal.x * Mathf.Abs(body.velocity.x) * Time.deltaTime * (body.velocity.x - hit.normal.x > 0 ? 1 : -1);
-                transform.position = pos;
-            }
+    private void OtherActions()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
+        {
+            rb.AddForce(transform.up * jumpForse, ForceMode2D.Impulse);
+            Anim.SetTrigger("IsJumping");
+        }
+
+        if (Input.GetButtonDown("Fire1") && PlayerInfo.Stamina > 0)
+        {
+            collider.sharedMaterial = lowFrictionMaterial;
+            //rb.velocity = new Vector2(speed * _facingRight * 2f, rb.velocity.y);
+            Anim.SetTrigger("IsAttacking");
+            PlayerInfo.OnAction(15);
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && PlayerInfo.Stamina > 0)
+        {
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), true);
+            rb.velocity = new Vector2(speed * _facingRight * 2.5f, rb.velocity.y);
+            Anim.SetTrigger("IsSliding");
+            collider.sharedMaterial = lowFrictionMaterial;
+            PlayerInfo.OnAction(20);
+        }
+
+        if (Input.GetMouseButtonDown(1) && PlayerInfo.Stamina > 0)
+        {
+            //_isFiring = true;
+            shield.active = true;
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            shield.active = false;
         }
     }
 }

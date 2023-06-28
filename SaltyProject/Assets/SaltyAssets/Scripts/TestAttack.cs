@@ -33,24 +33,8 @@ public class TestAttack : MonoBehaviour
     }
     private void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            anim.SetInteger("WeaponType", (int)WeaponType.sword);
-            CurrentWeaponAnim = _swordAnim;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            anim.SetInteger("WeaponType", (int)WeaponType.hammer);
-            CurrentWeaponAnim = _hammerAnim;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            anim.SetInteger("WeaponType", (int)WeaponType.sycthe);
-            CurrentWeaponAnim = _scytheAnim;
-        }
-
-
-        if (!stateInfo.IsName(CurrentWeaponAnim) && !playerStateInfo.IsName("slide_side"))
+        //!stateInfo.IsName(CurrentWeaponAnim) && !playerStateInfo.IsName("slide_side")
+        if (PlayerInfo.IsNotBusy && PlayerInfo.Stamina > 0)
         {
             if(Input.GetButtonDown("Fire1"))
             {
@@ -63,6 +47,22 @@ public class TestAttack : MonoBehaviour
                         enemies[i].GetComponent<DamagebleObject>().TakeDamage(Damage);
                     }
                 }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                anim.SetInteger("WeaponType", (int)WeaponType.sword);
+                CurrentWeaponAnim = _swordAnim;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                anim.SetInteger("WeaponType", (int)WeaponType.hammer);
+                CurrentWeaponAnim = _hammerAnim;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                anim.SetInteger("WeaponType", (int)WeaponType.sycthe);
+                CurrentWeaponAnim = _scytheAnim;
             }
         }
     }
