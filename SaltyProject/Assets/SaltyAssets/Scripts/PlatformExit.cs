@@ -18,7 +18,6 @@ public class PlatformExit : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             isOnPlatform = true;
-            Debug.Log("sos");
         }
     }
 
@@ -27,7 +26,6 @@ public class PlatformExit : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             isOnPlatform = true;
-            Debug.Log("sos");
         }
     }
 
@@ -35,13 +33,11 @@ public class PlatformExit : MonoBehaviour
     {
         isOnPlatform = false;
         boxCollider.isTrigger = false;
-        Debug.Log("sosat");
     }
 
     private void OnCollisionExit2D()
     {
         isOnPlatform = false;
-        Debug.Log("sosu");
     }
 
     // Update is called once per frame

@@ -64,10 +64,12 @@
     <Compile Include="Assets\SaltyAssets\Scripts\StateInfo.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\HPSlider.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Player.cs" />
+    <Compile Include="Assets\SaltyAssets\Scripts\BulletScript.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\TestAttack.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Enemy\DamagebleObject.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\ItemAssets.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\PlatformExit.cs" />
+    <Compile Include="Assets\SaltyAssets\Scripts\BreakingPlatform.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\ItemWorld.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\UI_Inventory.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Item.cs" />

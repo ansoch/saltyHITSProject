@@ -16,7 +16,7 @@ public class GunController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1) && PlayerInfo.IsNotBusy)
+        if (Input.GetKeyDown(KeyCode.Z) && PlayerInfo.IsNotBusy)
         {
             spriteRenderer.enabled = true;
             fireAnim.SetTrigger("IsFiring");

@@ -102,6 +102,8 @@ public class Player : MonoBehaviour
 
             Flip();
         }
+
+        _isFiring = false;
     }
     private void FixedUpdate()
     {
@@ -177,12 +179,16 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && PlayerInfo.Stamina > 0)
         {
-            //_isFiring = true;
             shield.active = true;
         }
         if (Input.GetMouseButtonUp(1))
         {
             shield.active = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            _isFiring = true;
         }
     }
 }
