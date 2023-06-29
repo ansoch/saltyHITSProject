@@ -6,6 +6,8 @@ public static class PlayerInfo
 {
     //public delegate void PerformAnimAction(string conditionName);
 
+    public static float FacingRight { get; private set; } = -1f;
+
     static public bool IsNotBusy { get; private set; }
     static public int Health { get; private set; } = 10;
     static public int MaxHealth { get; private set; } = 10;
@@ -17,8 +19,6 @@ public static class PlayerInfo
     static private float staminaRestorationWaitUpMax = 600;
     static private float staminaRestorationWaitUpTick = 10;
     static private bool waitUp = false;
-
-    static public void SetState(this Player player, bool value) => IsNotBusy = value;
     static public void OnDamage(int damage) => Health -= damage;
     static public void OnHealing(int healing) => Health += healing + Health > MaxHealth ? MaxHealth - Health : healing;
 
@@ -42,4 +42,7 @@ public static class PlayerInfo
             waitUp = StaminaRestorationWaitUp > 0;
         }
     }
+
+    static public void SetFacingRight(this Player player, float value) => FacingRight = value;
+    static public void SetState(this Player player, bool value) => IsNotBusy = value;
 }

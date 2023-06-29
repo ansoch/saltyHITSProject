@@ -139,12 +139,14 @@ public class Player : MonoBehaviour
             collider.sharedMaterial = lowFrictionMaterial;
             rb.velocity = new Vector2(speed, rb.velocity.y);
             _facingRight = 1f;
+            this.SetFacingRight(_facingRight);
         }
         else if (Input.GetKey(KeyCode.A))
         {
             collider.sharedMaterial = lowFrictionMaterial;
             rb.velocity = new Vector2(-speed, rb.velocity.y);
             _facingRight = -1f;
+            this.SetFacingRight(_facingRight);
         }
         else
         {
@@ -192,3 +194,4 @@ public class Player : MonoBehaviour
         }
     }
 }
+

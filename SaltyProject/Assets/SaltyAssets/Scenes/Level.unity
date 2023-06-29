@@ -7746,6 +7746,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireAnim: {fileID: 844440726}
+  projectilePrefab: {fileID: 7723882607813551216, guid: a5268cf0270cd1645bc2f6f20f0a28b3, type: 3}
+  spawnPoint: {fileID: 844440725}
 --- !u!1 &1831701668
 GameObject:
   m_ObjectHideFlags: 0
