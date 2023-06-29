@@ -24,6 +24,6 @@ public class BulletScript : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(thisGameObject);
-        collision.gameObject.GetComponent<DamagebleObject>().TakeDamage(Damage);
+        collision.gameObject.GetComponent<DamagebleObject>()?.TakeDamage(Damage);
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+//using System.Numerics;
 using UnityEngine;
 
 public enum WeaponType
@@ -34,13 +35,19 @@ public class Player : MonoBehaviour
     private string _syctheAnim = "sycthe_side";
 
     private bool _isFiring = false;
+    public bool IsShielded { get; private set; } = false;
 
     [SerializeField] private Collider2D collider;
     [SerializeField] private PhysicsMaterial2D highFrictionMaterial;
     [SerializeField] private PhysicsMaterial2D lowFrictionMaterial;
     [SerializeField] private GameObject shield;
+    [field: SerializeField] public Transform PickUpTransform { get; private set; }
 
     private float _facingRight = -1;
+
+    private IPlayerState playerState = new BasicPlayerState();
+
+    public GameObject InteructibleObject { get; private set; } = null;
 
     //private IPlayerState _playerState = new IdlePlayerState();
 
@@ -66,9 +73,20 @@ public class Player : MonoBehaviour
             }
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
     {
-        
+        if (collision.gameObject.CompareTag("Interactible"))
+        {
+            InteructibleObject = collision.gameObject;
+        }
+    }
+    private void OnTriggerExit2D(UnityEngine.Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Interactible"))
+        {
+            InteructibleObject = null;
+        }
     }
 
     public Vector3 GetPosition()
@@ -87,33 +105,34 @@ public class Player : MonoBehaviour
     {
         AnimatorStateInfo stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
 
-        bool isNotBusy = !stateInfo.IsName(CurrentWeaponAnim) && !stateInfo.IsName("slide_side") && !_isFiring;
+        bool isNotBusy = !stateInfo.IsName(CurrentWeaponAnim) && !stateInfo.IsName("slide_side") && !_isFiring && !IsShielded;
         this.SetState(isNotBusy);
 
         if (isNotBusy)
         {
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), false);
 
-            Running();
-
-            WeaponChanger();
-
-            OtherActions();
+            playerState = playerState.UpdateState(this);
 
             Flip();
         }
-
+        else
+        {
+            if (Input.GetMouseButtonUp(1))
+            {
+                shield.active = false;
+                IsShielded = false;
+            }
+        }
         _isFiring = false;
     }
     private void FixedUpdate()
     {
         IsGrounded = Physics2D.OverlapCircle(groundCheck.position, radiusGroundCheck, WhatIsGround);
-        Anim.SetFloat("SpeedX", Math.Abs(rb.velocity.x));
-        Anim.SetBool("IsRunning", Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A));
-        Anim.SetBool("IsGrounded", IsGrounded);
+        playerState.FixedUpdateState(this);
     }
 
-    private void WeaponChanger()
+    public void WeaponChanger()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -132,7 +151,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Running()
+    public void Running()
     {
         if (Input.GetKey(KeyCode.D))
         {
@@ -154,7 +173,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OtherActions()
+    public void OtherActions()
     {
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
         {
@@ -182,10 +201,7 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && PlayerInfo.Stamina > 0)
         {
             shield.active = true;
-        }
-        if (Input.GetMouseButtonUp(1))
-        {
-            shield.active = false;
+            IsShielded = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
@@ -195,3 +211,73 @@ public class Player : MonoBehaviour
     }
 }
 
+public interface IPlayerState
+{
+    IPlayerState UpdateState(Player player);
+    void FixedUpdateState(Player player);
+}
+
+public class BasicPlayerState : IPlayerState
+{
+    public IPlayerState UpdateState(Player player)
+    {
+        player.WeaponChanger();
+        player.Running();
+        player.OtherActions();
+
+        if (Input.GetKeyDown(KeyCode.X) && player.InteructibleObject != null)
+        {
+            player.InteructibleObject.GetComponent<IInteractible>().Collider.enabled = false;
+            return player.InteructibleObject.GetComponent<IInteractible>().Interact();
+        }
+
+        return this;
+    }
+    public void FixedUpdateState(Player player)
+    {
+        player.Anim.SetFloat("SpeedX", Math.Abs(player.rb.velocity.x));
+        player.Anim.SetBool("IsRunning", (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)) && !player.IsShielded);
+        player.Anim.SetBool("IsGrounded", player.IsGrounded);
+        player.Anim.SetBool("IsCarrying", false);
+    }
+}
+
+public class CarryingPlayerState : IPlayerState
+{
+    public IPlayerState UpdateState(Player player)
+    {
+        player.Running();
+        PickUp(player, player.InteructibleObject);
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            player.InteructibleObject.GetComponent<IInteractible>().Rigidbody.velocity = new Vector2(10 * PlayerInfo.FacingRight, 1);
+            player.InteructibleObject.GetComponent<IInteractible>().Collider.enabled = true;
+            return new BasicPlayerState();
+        }
+
+        return this;
+    }
+    public void FixedUpdateState(Player player)
+    {
+        player.Anim.SetBool("IsRunning", (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)));
+        player.Anim.SetBool("IsCarrying", true);
+    }
+    private void PickUp(Player player, GameObject pickUpObject) => pickUpObject.transform.position = player.PickUpTransform.position;
+}
+public class TalkingPlayerState : IPlayerState
+{
+    public IPlayerState UpdateState(Player player)
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            return new BasicPlayerState();
+        }
+
+        return this;
+    }
+    public void FixedUpdateState(Player player)
+    {
+        
+    }
+}
