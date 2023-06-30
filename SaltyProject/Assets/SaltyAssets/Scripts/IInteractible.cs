@@ -6,5 +6,7 @@ public interface IInteractible
 {
     Collider2D Collider { get; }
     Rigidbody2D Rigidbody { get; }
+    bool IsInRange {  get; }
     IPlayerState Interact();
 }
+

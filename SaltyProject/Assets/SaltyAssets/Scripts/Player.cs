@@ -225,10 +225,23 @@ public class BasicPlayerState : IPlayerState
         player.Running();
         player.OtherActions();
 
-        if (Input.GetKeyDown(KeyCode.X) && player.InteructibleObject != null)
+        if (player.InteructibleObject != null)
         {
-            player.InteructibleObject.GetComponent<IInteractible>().Collider.enabled = false;
-            return player.InteructibleObject.GetComponent<IInteractible>().Interact();
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                player.InteructibleObject.GetComponent<IInteractible>().Collider.enabled = false;
+                return player.InteructibleObject.GetComponent<IInteractible>().Interact();
+            }
+            else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) && player.InteructibleObject.GetComponent<LadderScript>() != null)
+            {
+                Transform playerTransform = player.GetComponent<Transform>();
+                Transform ladderTransform = player.InteructibleObject.GetComponent<Transform>();
+
+                playerTransform.position = new Vector3(ladderTransform.position.x, playerTransform.position.y, playerTransform.position.z);
+                player.rb.gravityScale = 0;
+
+                return player.InteructibleObject.GetComponent<IInteractible>().Interact();
+            }
         }
 
         return this;
@@ -247,7 +260,8 @@ public class CarryingPlayerState : IPlayerState
     public IPlayerState UpdateState(Player player)
     {
         player.Running();
-        PickUp(player, player.InteructibleObject);
+        if (player.InteructibleObject != null) PickUp(player, player.InteructibleObject);
+        else return new BasicPlayerState();
 
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -279,5 +293,46 @@ public class TalkingPlayerState : IPlayerState
     public void FixedUpdateState(Player player)
     {
         
+    }
+}
+
+public class LadderPlayerState : IPlayerState
+{
+    public IPlayerState UpdateState(Player player)
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            player.rb.velocity = new Vector2(0, 5);
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            player.rb.velocity = new Vector2(0, -5);
+        }
+        else
+        {
+            player.rb.velocity = new Vector2(0, 0);
+        }
+
+        if (!player.InteructibleObject.GetComponent<IInteractible>().IsInRange || Input.GetKeyDown(KeyCode.Space))
+        {
+            player.rb.gravityScale = 3;
+            player.Anim.SetBool("IsOnLadder", false);
+            player.Anim.SetBool("IsMoving", false);
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                player.rb.AddForce(player.transform.up * player.jumpForse, ForceMode2D.Impulse);
+                player.Anim.SetTrigger("IsJumping");
+            }
+
+            return new BasicPlayerState();
+        }
+
+            return this;
+    }
+    public void FixedUpdateState(Player player)
+    {
+        player.Anim.SetBool("IsOnLadder", true);
+        player.Anim.SetBool("IsMoving", Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.W));
     }
 }

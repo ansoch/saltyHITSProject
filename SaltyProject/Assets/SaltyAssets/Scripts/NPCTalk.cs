@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NPCTalk : MonoBehaviour, IInteractible
 {
+    public bool IsInRange { get; }
     [field: SerializeField] public Collider2D Collider { get; private set; }
     [field: SerializeField] public Rigidbody2D Rigidbody { get; private set; }
     [SerializeField] private GameObject pressX;

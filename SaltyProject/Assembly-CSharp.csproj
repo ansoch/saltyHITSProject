@@ -69,9 +69,11 @@
     <Compile Include="Assets\SaltyAssets\Scripts\NPCTalk.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Item.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\STSlider.cs" />
+    <Compile Include="Assets\SaltyAssets\CoolPrefabs\Bomb\PickUpObject.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Camera.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Enemy\EnemyAI.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\ItemWorldSpawner.cs" />
+    <Compile Include="Assets\SaltyAssets\CoolPrefabs\Bomb\BombScript.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\NetworkManagerUi.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Button_UI.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\HPSlider.cs" />
@@ -82,9 +84,7 @@
     <Compile Include="Assets\SaltyAssets\Scripts\ItemWorld.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\UI_Inventory.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\IInteractible.cs" />
-    <Compile Include="Assets\SaltyAssets\Scripts\BombScript.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Enemy\TestEnemy.cs" />
-    <Compile Include="Assets\SaltyAssets\Scripts\PickUpObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\SaltyAssets\TextMesh Pro\Shaders\TMPro.cginc" />
