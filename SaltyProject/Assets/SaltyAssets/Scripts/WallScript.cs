@@ -5,11 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class WallScript : MonoBehaviour
 {
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        SceneManager.LoadScene("Level2");
-    }
     // Start is called before the first frame update
     void Start()
     {

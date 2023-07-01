@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SaltyAssets/Scenes/Level.unity
     guid: c68485e8b6b57444da2846cc3b235bd9
+  - enabled: 1
+    path: Assets/SaltyAssets/Scenes/Level 2.unity
+    guid: e18167ce6a6297c4985a207192723c12
   m_configObjects: {}

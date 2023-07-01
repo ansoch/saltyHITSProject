@@ -107,6 +107,11 @@ public class Player : MonoBehaviour
         {
             InteructibleObject = collision.gameObject;
         }
+        else if (collision.gameObject.CompareTag("Wall"))
+        {
+            Debug.Log("asdasdas");
+            SceneManager.LoadScene("Level 2");
+        }
     }
     private void OnTriggerExit2D(UnityEngine.Collider2D collision)
     {
