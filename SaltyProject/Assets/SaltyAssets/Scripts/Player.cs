@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 //using System.Numerics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum WeaponType
 {
@@ -27,12 +28,14 @@ public class Player : MonoBehaviour
     private Vector3 _leftFlip = new Vector3(0, 180, 0);
     private Inventory inventory;
     [SerializeField] private UI_Inventory uiInventory;
+    [SerializeField] private TestAttack TA;
 
     public string CurrentWeaponAnim { get; private set; } = "sword_side";
 
     private string _swordAnim = "sword_side";
     private string _hammerAnim = "hammer_side";
     private string _syctheAnim = "sycthe_side";
+    private bool OneItemTake = false;
 
     private bool _isFiring = false;
     public bool IsShielded { get; private set; } = false;
@@ -49,6 +52,21 @@ public class Player : MonoBehaviour
 
     public GameObject InteructibleObject { get; private set; } = null;
 
+
+
+    [SerializeField] private float poisonTime = 0;
+    [SerializeField] private float poisonDamage = 0.01f;
+
+    [SerializeField] private float balance = 100f;
+
+    [SerializeField] private float balanceHealTime = 6;
+    [SerializeField] private bool isTimer = false;
+
+    [SerializeField] private float stunTime = 4;
+    [SerializeField] private bool isStuned = false;
+
+
+
     //private IPlayerState _playerState = new IdlePlayerState();
 
     // Start is called before the first frame update
@@ -59,17 +77,26 @@ public class Player : MonoBehaviour
         inventory = new Inventory();
         uiInventory.SetPlayer(this);
         uiInventory.SetInventory(inventory);
+        inventory.AddItem(new Item { itemType = Item.ItemType.ForWeapon, amount = 1 });
+        inventory.AddItem(new Item { itemType = Item.ItemType.ForWeapon, amount = 1 });
+        inventory.AddItem(new Item { itemType = Item.ItemType.ForWeapon, amount = 1 });
+        inventory.AddItem(new Item { itemType = Item.ItemType.Weapon, amount = 1 });
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         ItemWorld itemWorld = collision.GetComponent<ItemWorld>();
-        if (itemWorld != null && Input.GetKey(KeyCode.E))
+        if (OneItemTake == true)
+        {
+            Debug.Log("OneItem=true");
+        }
+        if (itemWorld != null && Input.GetKey(KeyCode.E) && !OneItemTake)
         {
             if (inventory.GetItemList().Count < 8)
             {
                 inventory.AddItem(itemWorld.GetItem());
                 itemWorld.DestroySelf();
+                OneItemTake = true;
             }
         }
     }
@@ -103,27 +130,50 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(PlayerInfo.Health);
         AnimatorStateInfo stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
 
         bool isNotBusy = !stateInfo.IsName(CurrentWeaponAnim) && !stateInfo.IsName("slide_side") && !_isFiring && !IsShielded;
         this.SetState(isNotBusy);
-
-        if (isNotBusy)
+        if (isStuned == true)
         {
-            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), false);
-
-            playerState = playerState.UpdateState(this);
-
-            Flip();
+            stunTime -= Time.deltaTime;
+            balance = 100f;
+            if (stunTime <= 0)
+            {
+                isStuned = false;
+                stunTime = 4;
+            }
         }
         else
         {
-            if (Input.GetMouseButtonUp(1))
+            if (isTimer == true)
             {
-                shield.active = false;
-                IsShielded = false;
+                balanceHealTime -= Time.deltaTime;
+                if (balanceHealTime <= 0)
+                {
+                    balance = 100f;
+                    isTimer = false;
+                }
+            }
+            if (isNotBusy)
+            {
+                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), false);
+
+                playerState = playerState.UpdateState(this);
+
+                Flip();
+            }
+            else
+            {
+                if (Input.GetMouseButtonUp(1))
+                {
+                    shield.active = false;
+                    IsShielded = false;
+                }
             }
         }
+        UseInventory();
         _isFiring = false;
     }
     private void FixedUpdate()
@@ -131,9 +181,72 @@ public class Player : MonoBehaviour
         IsGrounded = Physics2D.OverlapCircle(groundCheck.position, radiusGroundCheck, WhatIsGround);
         playerState.FixedUpdateState(this);
     }
-
+    private void UseItem(Item item)
+    {
+        if (item.itemType == Item.ItemType.HealthPotion)
+        {
+            PlayerInfo.OnHealing(3);
+        }
+        else if (item.itemType == Item.ItemType.Scythe)
+        {
+            CurrentWeaponAnim = _syctheAnim;
+            Anim.SetInteger("WeaponType", (int)WeaponType.sycthe);
+            TA.anim.SetInteger("WeaponType", (int)WeaponType.sycthe);
+            TA.CurrentWeaponAnim = _syctheAnim;
+        }
+        else if (item.itemType == Item.ItemType.Weapon)
+        {
+            CurrentWeaponAnim = _swordAnim;
+            Anim.SetInteger("WeaponType", (int)WeaponType.sword);
+            TA.anim.SetInteger("WeaponType", (int)WeaponType.sword);
+            TA.CurrentWeaponAnim = _swordAnim;
+        }
+        else if (item.itemType == Item.ItemType.Hummer)
+        {
+            CurrentWeaponAnim = _hammerAnim;
+            Anim.SetInteger("WeaponType", (int)WeaponType.hammer);
+            TA.anim.SetInteger("WeaponType", (int)WeaponType.hammer);
+            TA.CurrentWeaponAnim = _hammerAnim;
+        }
+    }
+    private void UseInventory()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            UseItem(inventory.GetItemList()[0]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            UseItem(inventory.GetItemList()[1]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            UseItem(inventory.GetItemList()[2]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            UseItem(inventory.GetItemList()[3]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            UseItem(inventory.GetItemList()[4]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            UseItem(inventory.GetItemList()[5]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            UseItem(inventory.GetItemList()[6]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            UseItem(inventory.GetItemList()[7]);
+        }
+    }
     public void WeaponChanger()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             CurrentWeaponAnim = _swordAnim;
@@ -149,6 +262,7 @@ public class Player : MonoBehaviour
             CurrentWeaponAnim = _syctheAnim;
             Anim.SetInteger("WeaponType", (int)WeaponType.sycthe);
         }
+        */
     }
 
     public void Running()
@@ -159,6 +273,7 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(speed, rb.velocity.y);
             _facingRight = 1f;
             this.SetFacingRight(_facingRight);
+            OneItemTake = false;
         }
         else if (Input.GetKey(KeyCode.A))
         {
@@ -166,6 +281,7 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(-speed, rb.velocity.y);
             _facingRight = -1f;
             this.SetFacingRight(_facingRight);
+            OneItemTake = false;
         }
         else
         {
@@ -207,6 +323,55 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             _isFiring = true;
+        }
+    }
+
+
+    public void TakeDamage(float hpDamage, float balanceDamage)
+    {
+        PlayerInfo.OnDamage((int)hpDamage);
+        Anim.Play("hit2_side");
+        balance -= balanceDamage;
+        balanceHealTime = 6;
+        isTimer = true;
+        if (PlayerInfo.Health <= 0)
+        {
+            Die();
+        }
+        if (balance <= 0)
+        {
+            isTimer = false;
+            isStuned = true;
+        }
+    }
+
+    public void Die()
+    {
+        PlayerInfo.OnHealing(100);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void KnockBack(bool direction)
+    {
+        if (!direction)
+        {
+            rb.AddForce((Vector2.up + Vector2.right) * jumpForse, ForceMode2D.Impulse);
+        }
+        else
+        {
+            rb.AddForce((Vector2.up + Vector2.left) * jumpForse, ForceMode2D.Impulse);
+        }
+    }
+
+    public void GetPoisoned(float poisonAmount)
+    {
+        poisonTime = poisonAmount;
+    }
+    public void GetDamageByPoison()
+    {
+        if (poisonTime > 0)
+        {
+            poisonTime -= Time.deltaTime;
+            //hp -= poisonDamage;
         }
     }
 }
@@ -292,7 +457,7 @@ public class TalkingPlayerState : IPlayerState
     }
     public void FixedUpdateState(Player player)
     {
-        
+
     }
 }
 
@@ -313,7 +478,7 @@ public class LadderPlayerState : IPlayerState
             player.rb.velocity = new Vector2(0, 0);
         }
 
-        if (!player.InteructibleObject.GetComponent<IInteractible>().IsInRange || Input.GetKeyDown(KeyCode.Space))
+        if (player.InteructibleObject == null || Input.GetKeyDown(KeyCode.Space))
         {
             player.rb.gravityScale = 3;
             player.Anim.SetBool("IsOnLadder", false);
@@ -328,7 +493,7 @@ public class LadderPlayerState : IPlayerState
             return new BasicPlayerState();
         }
 
-            return this;
+        return this;
     }
     public void FixedUpdateState(Player player)
     {

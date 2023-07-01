@@ -13,7 +13,7 @@ public class TestAttack : MonoBehaviour
 
     [SerializeField] private Animator playerAnimator;
 
-    public string CurrentWeaponAnim { get; private set; } = "weapon_sword_side";
+    public string CurrentWeaponAnim { get; set; } = "weapon_sword_side";
 
     private string _swordAnim = "weapon_sword_side";
     private string _hammerAnim = "weapon_hammer_side";
@@ -21,7 +21,7 @@ public class TestAttack : MonoBehaviour
 
     private AnimatorStateInfo stateInfo;
     private AnimatorStateInfo playerStateInfo;
-    Animator anim;
+    public Animator anim { get; private set; }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -35,7 +35,7 @@ public class TestAttack : MonoBehaviour
     {
         //!stateInfo.IsName(CurrentWeaponAnim) && !playerStateInfo.IsName("slide_side")
         anim.SetTrigger("IsAttacking");
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange,DamagableLayerMask);
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, DamagableLayerMask);
         if (enemies.Length != 0)
         {
             for (int i = 0; i < enemies.Length; ++i)
@@ -61,13 +61,14 @@ public class TestAttack : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
+
     }
 
 
 
     private void ChangeWeapon()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             anim.SetInteger("WeaponType", (int)WeaponType.sword);
@@ -83,5 +84,6 @@ public class TestAttack : MonoBehaviour
             anim.SetInteger("WeaponType", (int)WeaponType.sycthe);
             CurrentWeaponAnim = _scytheAnim;
         }
+        */
     }
 }

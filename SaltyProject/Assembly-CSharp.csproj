@@ -65,31 +65,48 @@
     <Compile Include="Assets\SaltyAssets\Scripts\BulletScript.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Enemy\DamagebleObject.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\TestAttack.cs" />
+    <Compile Include="Assets\SaltyAssets\Enemies\Enemy\Dog.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\ItemAssets.cs" />
+    <Compile Include="Assets\SaltyAssets\Scripts\PauseMenuHandler.cs" />
+    <Compile Include="Assets\SaltyAssets\Enemies\Bullet.cs" />
+    <Compile Include="Assets\SaltyAssets\Enemies\Enemy\TestEnemy.cs" />
+    <Compile Include="Assets\SaltyAssets\Scripts\BarrelScript.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Item.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\STSlider.cs" />
+    <Compile Include="Assets\SaltyAssets\Enemies\Enemy\Bull.cs" />
     <Compile Include="Assets\SaltyAssets\CoolPrefabs\Bomb\PickUpObject.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Camera.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Enemy\EnemyAI.cs" />
+    <Compile Include="Assets\SaltyAssets\Enemies\Enemy\Base Classes\Enemy.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\ItemWorldSpawner.cs" />
     <Compile Include="Assets\SaltyAssets\CoolPrefabs\PrefabScripts\LadderScript.cs" />
     <Compile Include="Assets\SaltyAssets\CoolPrefabs\Bomb\BombScript.cs" />
+    <Compile Include="Assets\SaltyAssets\Scripts\ButtonHandler.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\NetworkManagerUi.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Button_UI.cs" />
+    <Compile Include="Assets\SaltyAssets\Enemies\Enemy\FireDog.cs" />
+    <Compile Include="Assets\SaltyAssets\Enemies\Enemy\Turret.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\HPSlider.cs" />
+    <Compile Include="Assets\SaltyAssets\Enemies\Enemy\Snake.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Player.cs" />
+    <Compile Include="Assets\SaltyAssets\Scripts\BossDeath.cs" />
     <Compile Include="Assets\SaltyAssets\CoolPrefabs\PrefabScripts\NPCTalk.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\PlatformExit.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\BreakingPlatform.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\ItemWorld.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\UI_Inventory.cs" />
+    <Compile Include="Assets\SaltyAssets\Enemies\Enemy\Bear.cs" />
+    <Compile Include="Assets\SaltyAssets\Scripts\PipisGimmick.cs" />
+    <Compile Include="Assets\SaltyAssets\Enemies\Enemy\Boss.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\Enemy\TestEnemy.cs" />
     <Compile Include="Assets\SaltyAssets\CoolPrefabs\PrefabScripts\IInteractible.cs" />
+    <Compile Include="Assets\SaltyAssets\Enemies\Enemy\Slime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\SaltyAssets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\SaltyAssets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\SaltyAssets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\SaltyAssets\Enemies\Animations\Animations\Bringer Of Death\License.txt" />
     <None Include="Assets\SaltyAssets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\SaltyAssets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\SaltyAssets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
@@ -108,6 +125,7 @@
     <None Include="Assets\SaltyAssets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\SaltyAssets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\SaltyAssets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\SaltyAssets\Enemies\Animations\Animations\Bringer Of Death\Contact.txt" />
     <None Include="Assets\SaltyAssets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>

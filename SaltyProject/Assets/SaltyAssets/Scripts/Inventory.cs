@@ -6,6 +6,7 @@ using UnityEngine;
 public class Inventory 
 {
     private List<Item> itemList;
+    private int CountOfWeapons = 0;
     public Inventory()
     { 
         itemList = new List<Item>();
@@ -16,6 +17,13 @@ public class Inventory
     public void AddItem(Item item)
     {
         bool IsInInventory = false;
+        if(item.IsWeapon() && item.itemType != Item.ItemType.ForWeapon)
+        {
+            itemList[CountOfWeapons] = item;
+            CountOfWeapons++;
+            OnItemListChanged?.Invoke(this, EventArgs.Empty);
+            return;
+        }
         if (item.IsStackable())
         {
             foreach(Item it in itemList)

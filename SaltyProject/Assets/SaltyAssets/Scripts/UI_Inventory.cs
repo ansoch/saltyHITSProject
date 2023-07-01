@@ -34,10 +34,13 @@ public class UI_Inventory : MonoBehaviour
     }
     private void SelectInventoryItem(Item item)
     {
+        if(!item.IsWeapon())
+        {
         selectedInventoryItem = item;
         Item CopyItem = new Item { amount = item.amount, itemType = item.itemType  };
         inventory.RemoveItem(item);
         ItemWorld.DropItem(player.GetPosition(), CopyItem);
+        }
     }
     private void RefreshInventoryItems()
     {

@@ -1,0 +1,410 @@
+Using pre-set license
+Built from '2022.3/release' branch; Version is '2022.3.0f1 (fb119bb0b476) revision 16454043'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Professional' Language: 'ru' Physical Memory: 32637 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+B:\Unity Engine\2022.3.0f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker3
+-projectPath
+D:/projects/saltyHITSProject/SaltyProject
+-logFile
+Logs/AssetImportWorker3.log
+-srvPort
+53063
+Successfully changed project path to: D:/projects/saltyHITSProject/SaltyProject
+D:/projects/saltyHITSProject/SaltyProject
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [35184] Host "[IP] 192.168.31.240 [Port] 0 [Flags] 2 [Guid] 1196291399 [EditorId] 1196291399 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-LA58NB8) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [35184] Host "[IP] 192.168.31.240 [Port] 0 [Flags] 2 [Guid] 1196291399 [EditorId] 1196291399 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-LA58NB8) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+Refreshing native plugins compatible for Editor in 9.33 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.0f1 (fb119bb0b476)
+[Subsystems] Discovering subsystems at path B:/Unity Engine/2022.3.0f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/projects/saltyHITSProject/SaltyProject/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 3060 (ID=0x2504)
+    Vendor:   NVIDIA
+    VRAM:     12129 MB
+    Driver:   31.0.15.3179
+Initialize mono
+Mono path[0] = 'B:/Unity Engine/2022.3.0f1/Editor/Data/Managed'
+Mono path[1] = 'B:/Unity Engine/2022.3.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'B:/Unity Engine/2022.3.0f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56620
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: B:/Unity Engine/2022.3.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.005379 seconds.
+- Loaded All Assemblies, in  0.324 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.286 seconds
+Domain Reload Profiling: 611ms
+	BeginReloadAssembly (83ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (39ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (56ms)
+	LoadAllAssembliesAndSetupDomain (135ms)
+		LoadAssemblies (82ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (132ms)
+			TypeCache.Refresh (131ms)
+				TypeCache.ScanAssembly (120ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (287ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (223ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (8ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (3ms)
+			ProcessInitializeOnLoadAttributes (153ms)
+			ProcessInitializeOnLoadMethodAttributes (51ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.707 seconds
+Refreshing native plugins compatible for Editor in 4.23 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.589 seconds
+Domain Reload Profiling: 1297ms
+	BeginReloadAssembly (143ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (24ms)
+	RebuildCommonClasses (35ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (42ms)
+	LoadAllAssembliesAndSetupDomain (475ms)
+		LoadAssemblies (263ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (280ms)
+			TypeCache.Refresh (252ms)
+				TypeCache.ScanAssembly (241ms)
+			ScanForSourceGeneratedMonoScriptInfo (23ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (590ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (394ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (5ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (64ms)
+			ProcessInitializeOnLoadAttributes (285ms)
+			ProcessInitializeOnLoadMethodAttributes (33ms)
+			AfterProcessingInitializeOnLoad (2ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (8ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 3.84 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2808 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 59 unused Assets / (60.8 KB). Loaded Objects now: 3274.
+Memory consumption went from 118.2 MB to 118.2 MB.
+Total: 3.911700 ms (FindLiveObjects: 0.256300 ms CreateObjectMapping: 0.098200 ms MarkObjects: 3.386300 ms  DeleteObjects: 0.169400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1383150.043729 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/01 background.png
+  artifactKey: Guid(543fff9c6bee69649a543666c301ca86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/01 background.png using Guid(543fff9c6bee69649a543666c301ca86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '652e0d4c48ff63d7a2c468a7171d8f99') in 0.101395 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build.png
+  artifactKey: Guid(6d28f55f1b0572546b2632db94416d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build.png using Guid(6d28f55f1b0572546b2632db94416d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ba5ae6cd60777c65e205e848abab3cb') in 0.032358 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 266.961947 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_1.asset
+  artifactKey: Guid(da819d4f7219f9f438f8c2882cb1a3e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_1.asset using Guid(da819d4f7219f9f438f8c2882cb1a3e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ceb1b4b3c1472ec10d6537e7905759c0') in 0.028118 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.007480 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_9.asset
+  artifactKey: Guid(22987a8deb6359f4ebc6892566ebf5ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_9.asset using Guid(22987a8deb6359f4ebc6892566ebf5ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '488a09cb2b4adc49d5f6d9a7671287a8') in 0.019080 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_32.asset
+  artifactKey: Guid(6f4824c5f31418643bc4b46dfd939873) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_32.asset using Guid(6f4824c5f31418643bc4b46dfd939873) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '14cca321bdac50032186608b87955bf5') in 0.018092 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_11.asset
+  artifactKey: Guid(1f5674755f00b0b4a9a224851bef004e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_11.asset using Guid(1f5674755f00b0b4a9a224851bef004e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4d6b88b89a66ca53a9fe337af8c06434') in 0.028951 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_29.asset
+  artifactKey: Guid(7adf48457d694a549854dea558c54c61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_29.asset using Guid(7adf48457d694a549854dea558c54c61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f88421749fe120e5483f18436b82ab28') in 0.033721 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_19.asset
+  artifactKey: Guid(3c3e55e2169dc264aa2d7edcacdb3cdd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_19.asset using Guid(3c3e55e2169dc264aa2d7edcacdb3cdd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd56ac15d29e8d3f9a08a8b2bbfa60cf2') in 0.015345 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_2.asset
+  artifactKey: Guid(0ffaaf733bbe72f41aa7969ab842ab44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_2.asset using Guid(0ffaaf733bbe72f41aa7969ab842ab44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f20183a2c818941fb1a1c3f3cdf3cac') in 0.030242 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_18.asset
+  artifactKey: Guid(1e93970fd0717a5409737fca60f44fed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_18.asset using Guid(1e93970fd0717a5409737fca60f44fed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c312f422affa86a37aaab25e7642d5f') in 0.036992 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_36.asset
+  artifactKey: Guid(d4392e38aa824754393c6fa74f09ad7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_36.asset using Guid(d4392e38aa824754393c6fa74f09ad7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '954bf19585e5ea04ae4aa159eeff8bca') in 0.023816 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_48.asset
+  artifactKey: Guid(c46edcf1b58d1214b9a18a4e14585e0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_48.asset using Guid(c46edcf1b58d1214b9a18a4e14585e0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e97e5b6a3d9780362364839e5fe6ea8b') in 0.012136 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_30.asset
+  artifactKey: Guid(487d8b275c871784484e686fad6c97c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_30.asset using Guid(487d8b275c871784484e686fad6c97c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ddbfc44ad97b7bf9dd7385d2a1b27e69') in 0.005677 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_43.asset
+  artifactKey: Guid(cb9ea3cf0f0471c43b9ba621448f24cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_43.asset using Guid(cb9ea3cf0f0471c43b9ba621448f24cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cbb15479be134784fe991e5b7e5373b1') in 0.012657 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_46.asset
+  artifactKey: Guid(b86a8a8bfff9fa6499e6db43e869002e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_46.asset using Guid(b86a8a8bfff9fa6499e6db43e869002e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '542f22acf225f1f8ddc7a3444864b061') in 0.012631 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_53.asset
+  artifactKey: Guid(7dfb5987465b900488bcbe86261f1007) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_53.asset using Guid(7dfb5987465b900488bcbe86261f1007) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0bf3c35866571ea623e8a93cd84bc377') in 0.011789 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_42.asset
+  artifactKey: Guid(47f6e1e5698408c4cb11f66da704bc9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_42.asset using Guid(47f6e1e5698408c4cb11f66da704bc9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7db9dee67449c2b721dc14c492c50e93') in 0.012993 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_8.asset
+  artifactKey: Guid(d28a10f128871e54cbfb1e3b50b7f2e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_8.asset using Guid(d28a10f128871e54cbfb1e3b50b7f2e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2639d17d705bbcd008c59051feafa341') in 0.010605 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_28.asset
+  artifactKey: Guid(1ec677680f179744885e94dc1da323dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_28.asset using Guid(1ec677680f179744885e94dc1da323dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '40941e6f337a28110653071d446780e3') in 0.010822 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_47.asset
+  artifactKey: Guid(bb87725aa2ff43249a20667b2fe44f8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_47.asset using Guid(bb87725aa2ff43249a20667b2fe44f8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea6b3876527a2a9eba0be1bae8a7192e') in 0.011705 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_20.asset
+  artifactKey: Guid(1c1ac530b038a9347bf2aac9217dc78c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_20.asset using Guid(1c1ac530b038a9347bf2aac9217dc78c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4c04065df56f63aee2850addacb8ab2') in 0.011502 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_10.asset
+  artifactKey: Guid(530da4582f0561149926a0e02a5e4d46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_10.asset using Guid(530da4582f0561149926a0e02a5e4d46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da0f1d1009a31f4166c026beea442532') in 0.012333 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_44.asset
+  artifactKey: Guid(3195dbccc865544488ec05d5bec98d72) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_44.asset using Guid(3195dbccc865544488ec05d5bec98d72) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69dfcfacd5b3e397e8e1c7a5de582d59') in 0.013746 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_5.asset
+  artifactKey: Guid(2d9d5d8f00fcee9489809bdde5c0a1e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_5.asset using Guid(2d9d5d8f00fcee9489809bdde5c0a1e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f16505597e86d959ae0548c8adaa6229') in 0.013885 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_15.asset
+  artifactKey: Guid(33d8f19c470c76b46a514f1ec9e4d6fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_15.asset using Guid(33d8f19c470c76b46a514f1ec9e4d6fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec8f26d1311231f8f0fd509235836d32') in 0.013043 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_41.asset
+  artifactKey: Guid(17f50b7600c486841bedf7fd307e3b34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_41.asset using Guid(17f50b7600c486841bedf7fd307e3b34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd21f5bb620af3f57fa6551f90a63e985') in 0.013452 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_50.asset
+  artifactKey: Guid(568c1a53f41b1f54ebf0181bbd4d016c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_50.asset using Guid(568c1a53f41b1f54ebf0181bbd4d016c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b2e0534edcdd6ae6a7219a3da023a41') in 0.013520 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_39.asset
+  artifactKey: Guid(9bf5cb4ac0a7a0e48ad6b6f639d221b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_39.asset using Guid(9bf5cb4ac0a7a0e48ad6b6f639d221b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7e21b8cf048bf97b853a5c05eef43abf') in 0.013128 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/SaltyAssets/PlatformerSet1/main_lev_build_13.asset
+  artifactKey: Guid(d7ca6a8a7a31330488e680c273308fee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SaltyAssets/PlatformerSet1/main_lev_build_13.asset using Guid(d7ca6a8a7a31330488e680c273308fee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '13e8b462caed1198d5e1c95a2ceaa488') in 0.013586 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: ќпераци€ ввода/вывода была прервана из-за завершени€ потока команд или по запросу приложени€.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

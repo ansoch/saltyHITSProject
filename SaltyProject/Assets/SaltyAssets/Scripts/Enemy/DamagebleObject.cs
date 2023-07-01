@@ -8,12 +8,12 @@ public class DamagebleObject : MonoBehaviour
     public void TakeDamage(float damage)
     {
         hp -= damage;
-        if(hp < 0)
+        if(hp <= 0)
         {
             Die();
         }
     }
-    private void Die()
+    protected virtual void Die()
     {
         Destroy(gameObject);
     }
