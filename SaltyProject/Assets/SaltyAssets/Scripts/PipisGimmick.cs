@@ -28,6 +28,7 @@ public class PipisGimmick : DamagebleObject
     {
         //base.Die();
         hp = 1;
+        playerRB.velocity = new Vector2 (0, 0);
         playerRB.AddForce(new Vector2(xForce * PlayerInfo.FacingRight, yForce), ForceMode2D.Impulse);
     }
 }

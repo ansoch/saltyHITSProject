@@ -32,4 +32,14 @@ public class ItemWorld : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (this.item.itemType == Item.ItemType.Coin && collision.gameObject.CompareTag("Shop"))
+        {
+            int kolvo;
+            kolvo = this.item.amount / 2;
+            ItemWorld.SpawnItemWorld(gameObject.transform.position, new Item { itemType = Item.ItemType.HealthPotion, amount = kolvo });
+            Destroy(gameObject);
+        }
+    }
 }
