@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     {
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);
         RaycastHit2D wallInfo;
-        if(movingRight)
+        if (movingRight)
         {
             wallInfo = Physics2D.Raycast(wallDetection.position, Vector2.left, distance);
         }
@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
             wallInfo = Physics2D.Raycast(wallDetection.position, Vector2.right, distance);
         }
 
-        if ((groundInfo.collider == false)||(wallInfo.collider == true))
+        if ((groundInfo.collider == false) || (wallInfo.collider == true))
         {
             movingRight = !movingRight;
         }
@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
             wallInfo = Physics2D.Raycast(wallDetection.position, Vector2.right, distance);
         }
 
-        if ((groundInfo.collider == false)|| (secGroundInfo.collider == false) || (wallInfo == true))
+        if ((groundInfo.collider == false) || (secGroundInfo.collider == false) || (wallInfo == true))
         {
             movingRight = !movingRight;
         }
@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour
 
         if ((groundInfo.collider) && (secGroundInfo.collider))
         {
-            if(dashCooldown <= 0)
+            if (dashCooldown <= 0)
             {
                 if (player.position.x < transform.position.x)
                 {
@@ -203,7 +203,7 @@ public class Enemy : MonoBehaviour
         return attackCooldown;
     }
 
-    public Vector2 AttackLightAndHeavy(Transform attackPoint, LayerMask playerLayer, Transform player, float attackCooldown, float strongAttackCooldown, float weakAttackDelay, float strongAttackDelay, float attackRange, float weakHpDamage, float strongHpDamage,  float weakBalanceDamage, float strongBalanceDamage, float scaleX)
+    public Vector2 AttackLightAndHeavy(Transform attackPoint, LayerMask playerLayer, Transform player, float attackCooldown, float strongAttackCooldown, float weakAttackDelay, float strongAttackDelay, float attackRange, float weakHpDamage, float strongHpDamage, float weakBalanceDamage, float strongBalanceDamage, float scaleX)
     {
         if (player.position.x < transform.position.x)
         {
@@ -258,7 +258,7 @@ public class Enemy : MonoBehaviour
 
     public bool DashAttack(Transform attackPoint, Transform player, Rigidbody2D rb, LayerMask playerLayer, float speed, float attackRange, float hpDamage, float scaleX)
     {
-        if(Mathf.Abs(player.position.x - transform.position.x) >= attackRange)
+        if (Mathf.Abs(player.position.x - transform.position.x) >= attackRange)
         {
             if (player.position.x < transform.position.x)
             {
@@ -293,9 +293,9 @@ public class Enemy : MonoBehaviour
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
     }
 
-    public void Shot(GameObject bullet, Transform shotPoint)
+    public void Shot(GameObject bullet, Transform shotPoint, Transform player)
     {
-        if(!movingRight)
+        if (player.position.x < transform.position.x)
         {
             Instantiate(bullet, shotPoint.position, new Quaternion(0, 1, 0, 0));
         }
@@ -320,7 +320,7 @@ public class Enemy : MonoBehaviour
 
         if (cooldown <= 0)
         {
-            Shot(bullet, shotPoint);
+            Shot(bullet, shotPoint, player);
             cooldown = delay;
         }
         else
@@ -344,14 +344,14 @@ public class Enemy : MonoBehaviour
             movingRight = true;
         }
 
-        if(burstCooldown <= 0)
+        if (burstCooldown <= 0)
         {
             if (remainingShots > 0)
             {
-                if(shotCooldown <= 0)
+                if (shotCooldown <= 0)
                 {
                     remainingShots -= 1;
-                    Shot(bullet, shotPoint);
+                    Shot(bullet, shotPoint, player);
                     shotCooldown = shotDelay;
                 }
                 else

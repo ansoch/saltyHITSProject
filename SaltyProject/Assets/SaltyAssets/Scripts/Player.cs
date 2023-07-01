@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float stunTime = 4;
     [SerializeField] private bool isStuned = false;
 
-
+    [SerializeField] private GameObject panel;
 
     //private IPlayerState _playerState = new IdlePlayerState();
 
@@ -186,6 +186,7 @@ public class Player : MonoBehaviour
         if (item.itemType == Item.ItemType.HealthPotion)
         {
             PlayerInfo.OnHealing(3);
+            inventory.RemoveItem(new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
         }
         else if (item.itemType == Item.ItemType.Scythe)
         {
@@ -213,35 +214,43 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            UseItem(inventory.GetItemList()[0]);
+            if (inventory.GetItemList().Count >= 1)
+                UseItem(inventory.GetItemList()[0]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            UseItem(inventory.GetItemList()[1]);
+            if (inventory.GetItemList().Count >= 2)
+                UseItem(inventory.GetItemList()[1]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            UseItem(inventory.GetItemList()[2]);
+            if (inventory.GetItemList().Count >= 3)
+                UseItem(inventory.GetItemList()[2]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            UseItem(inventory.GetItemList()[3]);
+            if (inventory.GetItemList().Count >= 4)
+                UseItem(inventory.GetItemList()[3]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            UseItem(inventory.GetItemList()[4]);
+            if (inventory.GetItemList().Count >= 5)
+                UseItem(inventory.GetItemList()[4]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            UseItem(inventory.GetItemList()[5]);
+            if (inventory.GetItemList().Count >= 6)
+                UseItem(inventory.GetItemList()[5]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            UseItem(inventory.GetItemList()[6]);
+            if (inventory.GetItemList().Count >= 7)
+                UseItem(inventory.GetItemList()[6]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            UseItem(inventory.GetItemList()[7]);
+            if (inventory.GetItemList().Count >= 8)
+                UseItem(inventory.GetItemList()[7]);
         }
     }
     public void WeaponChanger()
@@ -329,6 +338,8 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float hpDamage, float balanceDamage)
     {
+        if (Anim.GetCurrentAnimatorStateInfo(0).IsName("slide_side")) return;
+
         PlayerInfo.OnDamage((int)hpDamage);
         Anim.Play("hit2_side");
         balance -= balanceDamage;
@@ -348,7 +359,11 @@ public class Player : MonoBehaviour
     public void Die()
     {
         PlayerInfo.OnHealing(100);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 0;
+
+        panel.SetActive(true);
+
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void KnockBack(bool direction)
     {

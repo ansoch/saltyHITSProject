@@ -27,6 +27,7 @@ public class PipisGimmick : DamagebleObject
     protected override void Die()
     {
         //base.Die();
+        hp = 1;
         playerRB.AddForce(new Vector2(xForce * PlayerInfo.FacingRight, yForce), ForceMode2D.Impulse);
     }
 }

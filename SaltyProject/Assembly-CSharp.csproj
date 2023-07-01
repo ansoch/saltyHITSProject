@@ -66,6 +66,7 @@
     <Compile Include="Assets\SaltyAssets\Scripts\Enemy\DamagebleObject.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\TestAttack.cs" />
     <Compile Include="Assets\SaltyAssets\Enemies\Enemy\Dog.cs" />
+    <Compile Include="Assets\SaltyAssets\Scripts\WallScript.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\ItemAssets.cs" />
     <Compile Include="Assets\SaltyAssets\Scripts\PauseMenuHandler.cs" />
     <Compile Include="Assets\SaltyAssets\Enemies\Bullet.cs" />

@@ -9,6 +9,7 @@ public class PauseMenuHandler : MonoBehaviour
     [SerializeField] private GameObject PauseMenu;
     [SerializeField] private Button continueButton;
     [SerializeField] private Button exitButton;
+    [SerializeField] private Button restartButton;
 
     private void Awake()
     {
@@ -17,6 +18,10 @@ public class PauseMenuHandler : MonoBehaviour
         });
         exitButton.onClick.AddListener(() => {
             SceneManager.LoadScene("MainMenu");
+        });
+        restartButton.onClick.AddListener(() => {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Time.timeScale = 1;
         });
     }
 

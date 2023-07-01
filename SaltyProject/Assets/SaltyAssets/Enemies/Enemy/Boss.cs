@@ -35,6 +35,7 @@ public class Boss : Enemy
     [SerializeField] private float strongBalanceDamage;
     [SerializeField] private float aoeCoeff = 4;
     [SerializeField] private GameObject bullet;
+    [SerializeField] private bool attacking = false;
 
     [Header("Cooldowns parametres")]
     [SerializeField] private float cooldown = 0;
@@ -54,6 +55,7 @@ public class Boss : Enemy
 
     [Header("Animation")]
     [SerializeField] private Animator anim;
+
 
     public void Start()
     {
@@ -78,7 +80,7 @@ public class Boss : Enemy
         anim.SetBool("isWalk", false);
         if (PlayerInSight(playerLayer, boxCollider, range, colliderDistance, high))
         {
-            if(!isDoing)
+            if (!isDoing)
             {
                 isDoing = true;
                 switch (attackType)
@@ -109,7 +111,7 @@ public class Boss : Enemy
         switch (attackType)
         {
             case 1:
-                if(!isWaiting)
+                if (!isWaiting)
                 {
                     anim.SetBool("isWalk", false);
                     anim.SetBool("isAttack", false);
@@ -117,10 +119,15 @@ public class Boss : Enemy
                     {
                         anim.SetInteger("AttackType", 1);
                         cooldown -= Time.deltaTime;
+                        attacking = true;
                     }
                     else
                     {
-                        Shot(bullet, attackPoint);
+                        if (attacking)
+                        {
+                            Shot(bullet, attackPoint, playerTransform);
+                            attacking = false;
+                        }
                         if (attackCooldown >= 0)
                         {
                             anim.SetBool("isAttack", true);
@@ -164,10 +171,15 @@ public class Boss : Enemy
                     {
                         anim.SetInteger("AttackType", 2);
                         cooldown -= Time.deltaTime;
+                        attacking = true;
                     }
                     else
                     {
-                        Punch(attackPoint, playerLayer, attackRange, weakHpDamage, weakBalanceDamage);
+                        if (attacking)
+                        {
+                            Punch(attackPoint, playerLayer, attackRange, weakHpDamage, weakBalanceDamage);
+                            attacking = false;
+                        }
                         if (attackCooldown >= 0)
                         {
                             anim.SetBool("isAttack", true);
@@ -211,10 +223,15 @@ public class Boss : Enemy
                     {
                         anim.SetInteger("AttackType", 3);
                         cooldown -= Time.deltaTime;
+                        attacking = true;
                     }
                     else
                     {
-                        Punch(attackPoint, playerLayer, attackRange * aoeCoeff, aoeHpDamage, aoeBalanceDamage);
+                        if (attacking)
+                        {
+                            Punch(attackPoint, playerLayer, attackRange * aoeCoeff, aoeHpDamage, aoeBalanceDamage);
+                            attacking = false;
+                        }
                         if (attackCooldown >= 0)
                         {
                             anim.SetBool("isAttack", true);
@@ -258,10 +275,15 @@ public class Boss : Enemy
                     {
                         anim.SetInteger("AttackType", 4);
                         cooldown -= Time.deltaTime;
+                        attacking = true;
                     }
                     else
                     {
-                        Punch(attackPoint, playerLayer, attackRange, strongHpDamage, strongBalanceDamage);
+                        if (attacking)
+                        {
+                            Punch(attackPoint, playerLayer, attackRange, strongHpDamage, strongBalanceDamage);
+                            attacking = false;
+                        }
                         if (attackCooldown >= 0)
                         {
                             anim.SetBool("isAttack", true);
@@ -277,7 +299,7 @@ public class Boss : Enemy
                 }
                 else
                 {
-                    anim.SetBool("isWalk", true);
+                    anim.SetBool("isWalk", false);
                     anim.SetBool("isAttack", false);
                     if (cooldown >= 0)
                     {

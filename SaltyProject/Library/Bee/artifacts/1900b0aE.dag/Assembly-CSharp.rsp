@@ -415,6 +415,7 @@
 "Assets/SaltyAssets/Scripts/STSlider.cs"
 "Assets/SaltyAssets/Scripts/TestAttack.cs"
 "Assets/SaltyAssets/Scripts/UI_Inventory.cs"
+"Assets/SaltyAssets/Scripts/WallScript.cs"
 "Assets/Scripts/SampleScript.cs"
 -langversion:9.0
 
